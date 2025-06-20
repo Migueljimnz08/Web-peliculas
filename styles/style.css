@@ -1,0 +1,135 @@
+:root {
+  --fondo: #cccccc;
+  --espacial: #333;
+  --blanco: #ffffff;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--fondo);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer {
+  text-align: center;
+  background-color: var(--espacial);
+  color: var(--blanco);
+  padding: 1rem;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--espacial);
+  border-radius: 4px;
+  resize: vertical;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+input[type="url"],select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--espacial);
+  border-radius: 4px;
+  resize: vertical;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+input[type='date'],select,
+textarea {
+  padding: 12px;
+  border: 1px solid var(--espacial);
+  border-radius: 4px;
+  resize: vertical;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--espacial);
+  border-radius: 4px;
+  resize: vertical;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+#pelis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+thead {
+  display: none; /* Hide table headers on small screens */
+}
+th {
+    padding: 12px;
+}
+
+tbody, tr, td {
+  display: block;
+  width: 100%;
+}
+
+tr {
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: #fff;
+}
+
+td {
+  padding: 0.5rem;
+  text-align: left;
+  position: relative;
+}
+
+td::before {
+  content: attr(data-label);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #555;
+}

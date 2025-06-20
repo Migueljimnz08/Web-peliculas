@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Pelis</title>
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Blockbuster2.0</h1>
+    </header>
+    <main>
+
+        <h2>Introduzca Pelicula</h2>
+        <section id="form">
+            <form id="pelisform">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" required>
+                <label for="year">Año:</label>
+                <input type="date" name="year" id="year" required>
+                <label for="description">Descricion:</label>
+                <textarea name="description" id="description"></textarea>
+                <label for="url">Foto:</label>
+                <input type="url" name="url" id="url" required>
+                <label for="genre">Género:</label>
+                <select name="genre" id="genre" required>
+                    <option value="terror">Terror</option>
+                    <option value="accion">Acción</option>
+                    <option value="comedia">Comedia</option>
+                    <option value="romantica">Romantica</option>
+                </select>
+                <button type="submit">Añadir</button>
+            </form>
+        </section>
+
+        <h2>Filtrador de pelis</h2>
+        <section id="filter">
+            <select name="filtropelis" id="filtropelis">
+                <option value="all">--Todos--</option>
+                <option value="terror">Terror</option>
+                <option value="accion">Acción</option>
+                <option value="comedia">Comedia</option>
+                <option value="romantica">Romantica</option>
+            </select>    
+        </section>
+        <section id="pelis">
+
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Blockbuster is back baby!</p>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>
