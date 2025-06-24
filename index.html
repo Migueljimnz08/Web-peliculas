@@ -19,17 +19,17 @@
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" required>
                 <label for="year">Año:</label>
-                <input type="date" name="year" id="year" required>
+                <input type="number" min="1800" name="year" id="year" required>
                 <label for="description">Descricion:</label>
                 <textarea name="description" id="description"></textarea>
                 <label for="url">Foto:</label>
                 <input type="url" name="url" id="url" required>
                 <label for="genre">Género:</label>
                 <select name="genre" id="genre" required>
-                    <option value="terror">Terror</option>
-                    <option value="accion">Acción</option>
-                    <option value="comedia">Comedia</option>
-                    <option value="romantica">Romantica</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Accion">Acción</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Romantica">Romantica</option>
                 </select>
                 <button type="submit">Añadir</button>
             </form>
@@ -38,15 +38,26 @@
         <h2>Filtrador de pelis</h2>
         <section id="filter">
             <select name="filtropelis" id="filtropelis">
-                <option value="all">--Todos--</option>
-                <option value="terror">Terror</option>
-                <option value="accion">Acción</option>
-                <option value="comedia">Comedia</option>
-                <option value="romantica">Romantica</option>
+                <option value="all">--Todos los generos--</option>
+                <option value="Terror">Terror</option>
+                <option value="Accion">Acción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Romantica">Romantica</option>
             </select>    
         </section>
-        <section id="pelis">
-
+        <section id="table">
+            <table>
+                <thead>
+                    <th><b>Nombre:</b></th>
+                    <th><b>Año:</b></th>
+                    <th><b>Descripción:</b></th>
+                    <th><b>Género:</b></th>
+                    <th><b>Imagen:</b></th>
+                </thead>
+                <tbody id="pelis">
+                    
+                </tbody>
+            </table>
         </section>
     </main>
     <footer>

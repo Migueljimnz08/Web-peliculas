@@ -1,32 +1,32 @@
 let pelis = [
     {
         name: 'Terminator',
-        year: '18/01/1985',
-        description: 'Un robot desnudo vuelve al pasado y persigue a una rubia',
+        year: '1985',
+        description: 'Un robot viaja al pasado, para asesinar a la madre del lider de la resistencia del futuro.',
         url: './assets/Terminator.jpg',
-        genre: 'accion'
+        genre: 'Accion'
 
     },
     {
         name: 'Shrek',
-        year: '13/07/2001',
+        year: '2001',
         description: 'Un ogro y un burro en busca del amor',
         url:'./assets/Shrek.jpg',
-        genre: 'comedia'
+        genre: 'Comedia'
     },
     {
         name: 'Ghostland',
-        year: '14/03/2018',
-        description: 'Unos degenerados juegan a las muñecas',
+        year: '2018',
+        description: 'Un par de asesinos en serie se cuelan en la casa de una familia recien llegada a la ciudad',
         url: './assets/Ghostland.jpg',
-        genre: 'terror',
+        genre: 'Terror',
     },
     {
         name: 'Titanic',
-        year: '8/01/1998',
+        year: '1998',
         description: 'La dama y el vagabundo en un crucero, live action',
         url: './assets/Titanic.jpg',
-        genre: 'romantica'
+        genre: 'Romantica'
     }
 ]
 
@@ -34,29 +34,19 @@ let pelis = [
 /******************* Render listas pelis ********************/
 
 function renderListaPelis(datosPelis) {
-    const listaDestinos = document.getElementById('pelis');
-    listaDestinos.innerHTML = '';
+    const listaPelis = document.getElementById('pelis');
+    listaPelis.innerHTML = '';
 
     datosPelis.forEach((pelis) => {
-        const table = document.createElement('table');
+        const table = document.createElement('tr');
         table.innerHTML =`
-        <tbody>
-            <tr>
-                <th><b>Nombre:</b></th>
-                <th><b>Año:</b></th>
-                <th><b>Descripción:</b></th>
-                <th><b>Genero:</b></th>
-                <th><b>Imagen:</b></th>
-            </tr>
-            <tr>
-                <td data-label='name'>${pelis.name}</td>
-                <td data-label='year'>${pelis.year}</td> 
-                <td data-label='description'>${pelis.description}</td> 
-                <td data-label='genre'>${pelis.genre}</td> 
-                <td data-label='name'><img src=${pelis.url}></td> 
-            </tr>
+                <td data-label='Nombre'>${pelis.name}</td>
+                <td data-label='Año'>${pelis.year}</td> 
+                <td data-label='Descripción'>${pelis.description}</td> 
+                <td data-label='Género'>${pelis.genre}</td> 
+                <td data-label='Imagen'><img src=${pelis.url}></td> 
         `;
-            listaDestinos.appendChild(table);   
+            listaPelis.appendChild(table);   
     });
 }
 
@@ -79,29 +69,37 @@ document.getElementById('pelisform').addEventListener('submit', (event) => {
 
 let msj = '';
 
-if (name.length < 2 || name.length > 30) {
-    console.log('Nombre fuera de rango: 2-30');
-    msj += 'Nombre fuera de rango: 2-30\n';
+if (name.length < 1 || name.length > 50) {
+    console.log('Nombre fuera de rango: 1-50');
+    msj += 'Nombre fuera de rango: 1-50\n';
 }
 
-const minDate =  Date('1800-01-01');
+const minDate = 1800;
+const currentDate = new Date();
 
-if (year === '' || year < minDate) {
-    console.log('Fecha incorrecta, no existen peliculas anteriores al año 1800');
-    msj += 'Fecha incorrecta, no existen peliculas anteriores al año 1800';
+if (year === '' || (year < minDate || year > currentDate.getFullYear())) {
+    console.log('Fecha incorrecta, no existen peliculas anteriores al año 1800 o posteriores al año actual');
+    msj += 'Fecha incorrecta, no existen peliculas anteriores al año 1800 o posteriores al año actual\n';
 }
 
-if (description.length < 3 || description.length > 50) {
-    console.log('Descripcion fuera de rango: 3-50');
-    msj += 'Descripcion fuera de rango: 3-50\n';
+if (description.length < 3 || description.length > 100) {
+    console.log('Descripcion fuera de rango: 3-100');
+    msj += 'Descripcion fuera de rango: 3-100\n';
 }
 
-/*const regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+const genreValid = ['Accion', 'Terror', 'Comedia', 'Romantica'];
+
+if (!genreValid.includes(genre)) {
+    console.log('Género no valido');
+    msj += 'Género no valido\n';
+}
+
+const regex = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
 
 if (!regex.test(url)){
     console.log('URL no es valido');
     msj += 'URL no es valido\n';
-} */
+} 
 
 if (msj.length !=0) {
     alert(msj);
@@ -113,15 +111,13 @@ if (msj.length !=0) {
 
      document.getElementById('pelisform').appendChild(p)
 }
-else if (name && year && description && url && genre) {
+else  {
         const nuevaPeli = {name, year, description, url, genre};
         pelis.push(nuevaPeli);
         renderListaPelis(pelis);
         event.target.reset();
     }
-
-}
-)
+})
 
 /***************** Filtro *****************/
 
@@ -137,32 +133,22 @@ document.getElementById('filtropelis').addEventListener('change', function () {
     const genre = this.value;
     const peli = filterByGenre(genre);
 
-    const listaDestinos = document.getElementById('pelis');
-    listaDestinos.innerHTML = '';
+    const listaPelis = document.getElementById('pelis');
+    listaPelis.innerHTML = '';
 
     if(peli) {
-        const table = document.createElement('table');
+        const table = document.createElement('tr');
         table.innerHTML =`
-        <tbody>
-            <tr>
-                <th><b>Nombre:</b></th>
-                <th><b>Año:</b></th>
-                <th><b>Descripción:</b></th>
-                <th><b>Genero:</b></th>
-                <th><b>Imagen:</b></th>
-            </tr>
-            <tr>
-                <td data-label='name'>${peli.name}</td>
-                <td data-label='year'>${peli.year}</td> 
-                <td data-label='description'>${peli.description}</td> 
-                <td data-label='genre'>${peli.genre}</td> 
-                <td data-label='name'><img src=${peli.url}></td> 
-            </tr>
+                <td data-label='Nombre'>${peli.name}</td>
+                <td data-label='Año'>${peli.year}</td> 
+                <td data-label='Descripción'>${peli.description}</td> 
+                <td data-label='Género'>${peli.genre}</td> 
+                <td data-label='Imgen'><img src=${peli.url}></td> 
         `;
-        listaDestinos.appendChild(table);
+        listaPelis.appendChild(table);
     } else if(genre === 'all'){ renderListaPelis(pelis);
     } else {
-        listaDestinos.innerHTML = '<p>Ninguna pelicula encontrada con este genero.</p>';
+        listaPelis.innerHTML = '<p>Ninguna pelicula encontrada con este genero.</p>';
     }
 });
 
